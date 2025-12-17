@@ -2,15 +2,15 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define N 10000   // 数据规模，可自行调整
+#define N 10000   // Data size, adjustable
 
-/************** 工具函数 **************/
+/************** Utility functions **************/
 void copyArray(int src[], int dest[], int n) {
     for (int i = 0; i < n; i++)
         dest[i] = src[i];
 }
 
-/************** 基本排序：冒泡排序 **************/
+//Basic Sort: Bubble Sort
 void bubbleSort(int a[], int n) {
     int i, j, temp;
     for (i = 0; i < n - 1; i++) {
@@ -24,7 +24,7 @@ void bubbleSort(int a[], int n) {
     }
 }
 
-/************** 快速排序 **************/
+//Quick Sort
 int partition(int a[], int low, int high) {
     int pivot = a[low];
     while (low < high) {
@@ -47,7 +47,7 @@ void quickSort(int a[], int low, int high) {
     }
 }
 
-/************** Shell 排序 **************/
+//Shell Sort
 void shellSort(int a[], int n) {
     int gap, i, j, temp;
     for (gap = n / 2; gap > 0; gap /= 2) {
@@ -60,7 +60,7 @@ void shellSort(int a[], int n) {
     }
 }
 
-/************** 堆排序 **************/
+//Heap Sort
 void heapAdjust(int a[], int i, int n) {
     int temp = a[i];
     int child;
@@ -86,18 +86,17 @@ void heapSort(int a[], int n) {
     }
 }
 
-/************** 主函数 **************/
 int main() {
     int origin[N];
     int temp[N];
     clock_t start, end;
 
-    // 生成随机数据
+    // Generate random data
     srand((unsigned)time(NULL));
     for (int i = 0; i < N; i++)
         origin[i] = rand();
 
-    /* 冒泡排序 */
+    //Bubble Sort 
     copyArray(origin, temp, N);
     start = clock();
     bubbleSort(temp, N);
@@ -105,7 +104,7 @@ int main() {
     printf("Bubble Sort Time: %.4f s\n",
            (double)(end - start) / CLOCKS_PER_SEC);
 
-    /* 快速排序 */
+    //Quick Sort
     copyArray(origin, temp, N);
     start = clock();
     quickSort(temp, 0, N - 1);
@@ -113,7 +112,7 @@ int main() {
     printf("Quick Sort Time:  %.4f s\n",
            (double)(end - start) / CLOCKS_PER_SEC);
 
-    /* Shell 排序 */
+    //Shell Sort
     copyArray(origin, temp, N);
     start = clock();
     shellSort(temp, N);
@@ -121,7 +120,7 @@ int main() {
     printf("Shell Sort Time:  %.4f s\n",
            (double)(end - start) / CLOCKS_PER_SEC);
 
-    /* 堆排序 */
+    //Heap Sort
     copyArray(origin, temp, N);
     start = clock();
     heapSort(temp, N);
